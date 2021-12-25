@@ -36,20 +36,22 @@ class Home extends StatelessWidget {
               selectedItemColor: Colors.amber[800],
               onTap: controller.onItemTapped,
             )),
-        body: Obx(() => Container(
-              margin: const EdgeInsets.all(40.0),
-              child: Center(
-                child: Visibility(
-                    visible: controller.factVisible.value,
-                    replacement: CircularProgressIndicator(
-                      value: null,
-                    ),
-                    child: Text(
-                      "${controller.fact}",
-                      style: TextStyle(fontSize: 40),
-                    )),
-              ),
-            )),
+        body: Center(
+            child: SingleChildScrollView(
+                child: Obx(
+          () => Container(
+            margin: const EdgeInsets.all(40.0),
+            child: Visibility(
+                visible: controller.factVisible.value,
+                replacement: CircularProgressIndicator(
+                  value: null,
+                ),
+                child: Text(
+                  "${controller.fact}",
+                  style: TextStyle(fontSize: 40),
+                )),
+          ),
+        ))),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.skip_next), onPressed: controller.fetchFact));
   }
@@ -85,7 +87,6 @@ class Controller extends GetxController {
 
   void onItemTapped(int index) {
     selectedIndex.value = index;
-    log("Index: " + index.toString());
-    log("SelectedIndex: " + selectedIndex.value.toString());
+    fetchFact();
   }
 }
