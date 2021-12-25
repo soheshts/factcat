@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:adwaita/adwaita.dart' as adwaita;
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
@@ -10,8 +9,6 @@ import 'dart:convert';
 void main() {
   runApp(GetMaterialApp(
     home: Home(),
-    theme: adwaita.lightTheme,
-    darkTheme: adwaita.darkTheme,
     title: "Fact Cat",
   ));
 }
@@ -21,6 +18,7 @@ class Home extends StatelessWidget {
   Widget build(context) {
     Controller controller = Get.put(Controller());
     return Scaffold(
+        backgroundColor: Colors.cyan,
         bottomNavigationBar: Obx(() => BottomNavigationBar(
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
