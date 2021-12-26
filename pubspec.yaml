@@ -37,6 +37,7 @@ dependencies:
   get: ^4.6.1
   adwaita: ^0.0.3
   http: ^0.13.4
+  share_plus: ^3.0.4
 
 dev_dependencies:
   flutter_test:
