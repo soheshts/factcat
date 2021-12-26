@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -36,8 +34,42 @@ class Home extends StatelessWidget {
             ),
             tooltip: 'Menu',
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('This is a snackbar')));
+              showModalBottomSheet<void>(
+                // context and builder are
+                // required properties in this widget
+                context: context,
+                builder: (BuildContext context) {
+                  // we set up a container inside which
+                  // we create center column and display text
+                  return Container(
+                    height: 200,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text('Categories',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          ListTile(
+                            title: Text("Number"),
+                            onTap: () => {
+                              controller.selectedIndex.value = 0,
+                              Navigator.pop(context),
+                              controller.fetchFact()
+                            },
+                          ),
+                          ListTile(
+                              title: Text("Random"),
+                              onTap: () => {
+                                    controller.selectedIndex.value = 1,
+                                    Navigator.pop(context),
+                                    controller.fetchFact()
+                                  })
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
             },
           ),
           actions: <Widget>[
@@ -48,8 +80,40 @@ class Home extends StatelessWidget {
               ),
               tooltip: 'Info',
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('This is a snackbar')));
+                showModalBottomSheet<void>(
+                  // context and builder are
+                  // required properties in this widget
+                  context: context,
+                  builder: (BuildContext context) {
+                    // we set up a container inside which
+                    // we create center column and display text
+                    return Container(
+                      height: 200,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Text('API Used',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            const Text('http://numbersapi.com/random/trivia'),
+                            const Text(
+                                'https://uselessfacts.jsph.pl/random.json?language=en'),
+                            const Text('Logo',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            const Text(
+                                'Made by Freepik (https://www.freepik.com)'),
+                            const Text(
+                                'from Flaticon (https://www.flaticon.com/)'),
+                            const Text('Source',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            const Text(
+                                'Github (https://github.com/soheshts/factcat)'),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
               },
             ),
           ],
